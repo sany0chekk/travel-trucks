@@ -7,3 +7,15 @@
     font-family: "Inter", sans-serif;
   }
 }
+
+.bg-hero-bg {
+  background-image: url("/images/bg-min.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-resolution: 192dpi) {
+  .bg-hero-bg {
+    background-image: url("/images/bg-2x-min.jpg");
+  }
+}
