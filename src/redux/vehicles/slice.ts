@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getAllVehicles } from "./operations";
+import { getAllVehicles, getVehicleById } from "./operations";
 import { Vehicle } from "../../models/vehicle";
 
 interface VehiclesState {
   vehicles: Vehicle[];
-  selectedVehicles: Vehicle[];
+  selectedVehicle: Vehicle | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: VehiclesState = {
   vehicles: [],
-  selectedVehicles: [],
+  selectedVehicle: null,
   loading: false,
   error: null,
 };
@@ -35,6 +35,22 @@ const slice = createSlice({
         }
       )
       .addCase(getAllVehicles.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || null;
+      })
+      .addCase(getVehicleById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        getVehicleById.fulfilled,
+        (state, action: PayloadAction<Vehicle>) => {
+          state.selectedVehicle = action.payload;
+          state.loading = false;
+          state.error = null;
+        }
+      )
+      .addCase(getVehicleById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || null;
       }),

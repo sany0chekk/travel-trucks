@@ -3,7 +3,7 @@ import Container from "./shared/Container";
 
 const Header = () => {
   return (
-    <header className="py-6 bg-white">
+    <header className="py-6 bg-inputs">
       <Container className="flex items-center justify-between relative">
         <Link to="/">
           <img

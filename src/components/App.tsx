@@ -7,6 +7,7 @@ import { AppDispatch } from "../redux/store";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage"));
+const VehicleDetailsPage = lazy(() => import("../pages/VehicleDetailsPage"));
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="catalog" element={<CatalogPage />} />
+          <Route path="catalog/:vehicleId" element={<VehicleDetailsPage />} />
         </Route>
       </Routes>
     </Suspense>

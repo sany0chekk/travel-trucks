@@ -18,3 +18,19 @@ export const getAllVehicles = createAsyncThunk<
     return thunkAPI.rejectWithValue("An unknown error occurred");
   }
 });
+
+export const getVehicleById = createAsyncThunk<
+  Vehicle,
+  string,
+  { rejectValue: string }
+>("vehicles/vehicleById", async (id, thunkAPI) => {
+  try {
+    const response = await axiosInstance.get(`/campers/${id}`);
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return thunkAPI.rejectWithValue(error.message || "Something went wrong");
+    }
+    return thunkAPI.rejectWithValue("An unknown error occurred");
+  }
+});

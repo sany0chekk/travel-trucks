@@ -19,3 +19,7 @@
     background-image: url("/images/bg-2x-min.jpg");
   }
 }
+
+.input {
+  @apply bg-inputs rounded-md p-[18px] text-base text-gray transition-colors focus:text-main outline-none;
+}
