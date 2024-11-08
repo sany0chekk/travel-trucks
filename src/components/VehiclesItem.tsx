@@ -24,13 +24,14 @@ const VehiclesItem: FC<Props> = ({ vehicle }) => {
     TV,
     radio,
     refrigerator,
+    transmission,
     microwave,
     gas,
     water,
   } = vehicle;
 
   return (
-    <li className="p-6 rounded-md border border-grayLight flex items-start gap-6">
+    <li className="p-6 rounded-md border border-grayLight flex items-start gap-6 max-h-[368px]">
       <div className="max-w-48 min-h-full flex">
         <img
           className="w-full h-auto object-cover rounded-md"
@@ -75,11 +76,12 @@ const VehiclesItem: FC<Props> = ({ vehicle }) => {
           refrigerator={refrigerator}
           microwave={microwave}
           gas={gas}
+          transmission={transmission}
           water={water}
         />
         <Button
           type="link"
-          href={`/catalog/${id}`}
+          href={`${id}`}
           variant="filled"
           className="mt-6 py-4 px-10"
         >

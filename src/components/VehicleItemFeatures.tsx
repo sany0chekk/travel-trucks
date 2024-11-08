@@ -2,6 +2,7 @@ import { FC } from "react";
 
 interface Props {
   engine?: string;
+  transmission?: string;
   AC?: boolean;
   bathroom?: boolean;
   kitchen?: boolean;
@@ -24,8 +25,10 @@ const VehicleItemFeatures: FC<Props> = ({
   microwave,
   gas,
   water,
+  transmission,
 }) => {
   const features = [
+    { condition: transmission, icon: "diagram", label: transmission },
     { condition: engine, icon: "fuel-pump", label: engine },
     { condition: AC, icon: "wind", label: "AC" },
     { condition: bathroom, icon: "ph_shower", label: "Bathroom" },
@@ -43,7 +46,7 @@ const VehicleItemFeatures: FC<Props> = ({
   ];
 
   return (
-    <ul className="grid grid-cols-3 gap-2">
+    <ul className="flex flex-wrap gap-2">
       {features.map(
         ({ condition, icon, label }) =>
           condition && (
@@ -52,7 +55,7 @@ const VehicleItemFeatures: FC<Props> = ({
               className="flex items-center gap-2 py-3 px-4 rounded-full bg-badges"
             >
               <svg className="w-5 h-5">
-                <use href={`./icons.svg#${icon}`} />
+                <use href={`/icons.svg#${icon}`} />
               </svg>
               <p className="capitalize">{label}</p>
             </li>

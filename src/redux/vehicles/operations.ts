@@ -9,9 +9,33 @@ export const getAllVehicles = createAsyncThunk<
   { rejectValue: string }
 >("vehicles/getAllVehicles", async (_, thunkAPI) => {
   try {
-    const response = await axiosInstance.get("/campers");
+    const state = thunkAPI.getState();
+    const filters = state.filters.filters;
+    const response = await axiosInstance.get("/campers", {
+      params: filters,
+    });
     return response.data.items;
   } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      return thunkAPI.rejectWithValue(error.message || "Something went wrong");
+    }
+    return thunkAPI.rejectWithValue("An unknown error occurred");
+  }
+});
+
+export const getAllVehiclesLocation = createAsyncThunk<
+  string[],
+  void,
+  { rejectValue: string }
+>("vehicles/getAllVehicleLocations", async (_, thunkAPI) => {
+  try {
+    const response = await axiosInstance.get("/campers");
+    const locations = response.data.items.map((item: Vehicle) => item.location);
+    const uniqueLocations = locations.filter(
+      (location: string, index: number) => locations.indexOf(location) === index
+    );
+    return uniqueLocations;
+  } catch (error) {
     if (error instanceof AxiosError) {
       return thunkAPI.rejectWithValue(error.message || "Something went wrong");
     }

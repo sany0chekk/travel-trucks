@@ -5,7 +5,7 @@ import VehiclesList from "../components/VehiclesList";
 const CatalogPage = () => {
   return (
     <section className="pt-12 pb-16">
-      <Container className="flex items-start gap-16">
+      <Container className="flex gap-16">
         <FilterSidebar />
         <VehiclesList />
       </Container>

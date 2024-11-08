@@ -1,18 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getAllVehicles, getVehicleById } from "./operations";
+import {
+  getAllVehicles,
+  getAllVehiclesLocation,
+  getVehicleById,
+} from "./operations";
 import { Vehicle } from "../../models/vehicle";
 
 interface VehiclesState {
   vehicles: Vehicle[];
   selectedVehicle: Vehicle | null;
+  locations: string[];
   loading: boolean;
+  detailsLoading: boolean;
   error: string | null;
 }
 
 const initialState: VehiclesState = {
   vehicles: [],
+  locations: [],
   selectedVehicle: null,
   loading: false,
+  detailsLoading: false,
   error: null,
 };
 
@@ -35,23 +43,41 @@ const slice = createSlice({
         }
       )
       .addCase(getAllVehicles.rejected, (state, action) => {
+        state.vehicles = [];
+        state.loading = false;
+        state.error = action.error.message || null;
+      })
+      .addCase(getAllVehiclesLocation.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        getAllVehiclesLocation.fulfilled,
+        (state, action: PayloadAction<string[]>) => {
+          state.locations = action.payload;
+          state.loading = false;
+          state.error = null;
+        }
+      )
+      .addCase(getAllVehiclesLocation.rejected, (state, action) => {
+        state.locations = [];
         state.loading = false;
         state.error = action.error.message || null;
       })
       .addCase(getVehicleById.pending, (state) => {
-        state.loading = true;
+        state.detailsLoading = true;
         state.error = null;
       })
       .addCase(
         getVehicleById.fulfilled,
         (state, action: PayloadAction<Vehicle>) => {
           state.selectedVehicle = action.payload;
-          state.loading = false;
+          state.detailsLoading = false;
           state.error = null;
         }
       )
       .addCase(getVehicleById.rejected, (state, action) => {
-        state.loading = false;
+        state.detailsLoading = false;
         state.error = action.error.message || null;
       }),
 });
