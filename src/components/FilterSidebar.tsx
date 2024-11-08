@@ -4,10 +4,14 @@ import { selectAllVehiclesLocations } from "../redux/vehicles/selectors";
 import { AppDispatch } from "../redux/store";
 import { setFilter } from "../redux/filters/slice";
 import { getAllVehicles } from "../redux/vehicles/operations";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import FiltersLocationSelect from "./FiltersLocationSelect";
 
 const FilterSidebar = () => {
   const locations = useSelector(selectAllVehiclesLocations);
   const dispatch = useDispatch<AppDispatch>();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const equipment = [
     { key: "AC", value: "true", icon: "wind", label: "AC" },
@@ -33,11 +37,13 @@ const FilterSidebar = () => {
     filterValue?: string | boolean
   ) => {
     if (filterValue === "" || filterValue === undefined) {
-      dispatch(setFilter({ filterKey, filterValue: undefined }));
+      searchParams.delete(filterKey);
     } else {
-      dispatch(setFilter({ filterKey, filterValue }));
+      searchParams.set(filterKey, String(filterValue));
     }
+    setSearchParams(searchParams);
 
+    dispatch(setFilter({ filterKey, filterValue }));
     dispatch(getAllVehicles());
   };
 
@@ -47,6 +53,14 @@ const FilterSidebar = () => {
     const location = event.target.value;
     handleFilterChange("location", location);
   };
+
+  useEffect(() => {
+    searchParams.forEach((value, key) => {
+      dispatch(setFilter({ filterKey: key, filterValue: value }));
+    });
+
+    dispatch(getAllVehicles());
+  }, [dispatch, searchParams]);
 
   return (
     <aside className="max-w-[25%] w-full">
@@ -58,22 +72,10 @@ const FilterSidebar = () => {
               <use href="/icons.svg#map"></use>
             </svg>
           </label>
-          <select
-            name="location"
-            id="location"
-            className="bg-transparent w-full h-full outline-none font-normal text-base"
-            onChange={handleLocationChange}
-          >
-            <option value="" selected>
-              All
-            </option>
-            {locations.length > 0 &&
-              locations.map((location, index) => (
-                <option key={index} value={location}>
-                  {location}
-                </option>
-              ))}
-          </select>
+          <FiltersLocationSelect
+            locations={locations}
+            handleLocationChange={handleLocationChange}
+          />
         </div>
       </div>
       <div>

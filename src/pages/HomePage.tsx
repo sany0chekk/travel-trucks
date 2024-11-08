@@ -12,7 +12,12 @@ const HomePage = () => {
           <p className="font-semibold text-white text-base md:text-2xl mb-10">
             You can find everything you want in our catalog
           </p>
-          <Button variant="filled" className="py-3 md:py-4 px-10 md:px-12">
+          <Button
+            type="link"
+            href="catalog"
+            variant="filled"
+            className="py-3 md:py-4 px-10 md:px-12"
+          >
             View now
           </Button>
         </div>

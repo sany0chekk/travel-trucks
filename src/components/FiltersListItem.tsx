@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   item: {
@@ -11,12 +12,15 @@ interface Props {
 }
 
 const FiltersListItem: FC<Props> = ({ item, onFilterChange }) => {
-  const [isChecked, setIsChecked] = useState(false);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const [isChecked, setIsChecked] = useState(
+    searchParams.get(item.key) === item.value
+  );
 
   const handleCheckboxChange = () => {
     const newCheckedState = !isChecked;
     setIsChecked(newCheckedState);
-    console.log(newCheckedState);
 
     if (newCheckedState) {
       onFilterChange(item.key, item.value);
@@ -24,6 +28,10 @@ const FiltersListItem: FC<Props> = ({ item, onFilterChange }) => {
       onFilterChange(item.key, "");
     }
   };
+
+  useEffect(() => {
+    setIsChecked(searchParams.get(item.key) === item.value);
+  }, [location.search, item.key, item.value]);
 
   return (
     <li>

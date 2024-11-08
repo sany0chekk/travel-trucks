@@ -16,7 +16,7 @@ const VehicleFeatures = () => {
     dispatch(getVehicleById(vehicleId));
   }, [vehicleId, vehicleById, dispatch]);
 
-  if (!vehicleById) return <p>Loading...</p>;
+  if (!vehicleById) return;
   const {
     form,
     length,
@@ -59,28 +59,28 @@ const VehicleFeatures = () => {
         <span className="w-full h-[1px] bg-grayLight" />
         <ul className="flex flex-col gap-4">
           <li className="flex items-center justify-between">
-            <p className=" font-medium text-base">Form</p>
-            <p className=" font-medium text-base">{form}</p>
+            <p className=" font-medium text-base capitalize">Form</p>
+            <p className=" font-medium text-base capitalize">{form}</p>
           </li>
           <li className="flex items-center justify-between">
-            <p className=" font-medium text-base">Length</p>
-            <p className=" font-medium text-base">{length}</p>
+            <p className=" font-medium text-base capitalize">Length</p>
+            <p className=" font-medium text-base capitalize">{length}</p>
           </li>
           <li className="flex items-center justify-between">
-            <p className=" font-medium text-base">Width</p>
-            <p className=" font-medium text-base">{width}</p>
+            <p className=" font-medium text-base capitalize">Width</p>
+            <p className=" font-medium text-base capitalize">{width}</p>
           </li>
           <li className="flex items-center justify-between">
-            <p className=" font-medium text-base">Height</p>
-            <p className=" font-medium text-base">{height}</p>
+            <p className=" font-medium text-base capitalize">Height</p>
+            <p className=" font-medium text-base capitalize">{height}</p>
           </li>
           <li className="flex items-center justify-between">
-            <p className=" font-medium text-base">Tank</p>
-            <p className=" font-medium text-base">{tank}</p>
+            <p className=" font-medium text-base capitalize">Tank</p>
+            <p className=" font-medium text-base capitalize">{tank}</p>
           </li>
           <li className="flex items-center justify-between">
-            <p className=" font-medium text-base">consumption</p>
-            <p className=" font-medium text-base">{consumption}</p>
+            <p className=" font-medium text-base capitalize">consumption</p>
+            <p className=" font-medium text-base capitalize">{consumption}</p>
           </li>
         </ul>
       </div>

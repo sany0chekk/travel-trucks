@@ -4,8 +4,19 @@ interface FiltersState {
   filters: { [key: string]: string | boolean };
 }
 
+const getFiltersFromURL = (): { [key: string]: string | boolean } => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const filters: { [key: string]: string | boolean } = {};
+
+  searchParams.forEach((value, key) => {
+    filters[key] = value === "true" ? true : value === "false" ? false : value;
+  });
+
+  return filters;
+};
+
 const initialState: FiltersState = {
-  filters: {},
+  filters: getFiltersFromURL(),
 };
 
 const slice = createSlice({

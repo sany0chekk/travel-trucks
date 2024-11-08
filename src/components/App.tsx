@@ -13,6 +13,7 @@ const HomePage = lazy(() => import("../pages/HomePage"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage"));
 const VehicleDetailsPage = lazy(() => import("../pages/VehicleDetailsPage"));
 const VehicleFeatures = lazy(() => import("./VehicleFeatures"));
+const VehicleReviews = lazy(() => import("./VehicleReviews"));
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="catalog/:vehicleId" element={<VehicleDetailsPage />}>
             <Route path="features" element={<VehicleFeatures />} />
+            <Route path="reviews" element={<VehicleReviews />} />
           </Route>
         </Route>
       </Routes>

@@ -81,7 +81,7 @@ const VehiclesItem: FC<Props> = ({ vehicle }) => {
         />
         <Button
           type="link"
-          href={`${id}`}
+          href={`${id}/features`}
           variant="filled"
           className="mt-6 py-4 px-10"
         >
