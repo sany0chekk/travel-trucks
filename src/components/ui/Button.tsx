@@ -5,8 +5,9 @@ interface Props {
   children: React.ReactNode;
   variant: "bordered" | "filled";
   className?: string;
-  type?: string;
+  type?: "button" | "submit" | "reset" | "link";
   href?: string;
+  onClick?: () => void;
 }
 
 const Button: FC<Props> = ({
@@ -15,6 +16,7 @@ const Button: FC<Props> = ({
   className = "",
   type = "button",
   href = "",
+  onClick,
 }) => {
   const defaultStyles =
     "font-inter text-base transition cursor-pointer rounded-full inline-block";
@@ -23,7 +25,7 @@ const Button: FC<Props> = ({
       ? "text-main border border-grayLight hover:border-buttonHover"
       : "text-white bg-button hover:bg-buttonHover";
 
-  if (type !== "button") {
+  if (type === "link" && href) {
     return (
       <Link
         to={href}
@@ -35,7 +37,11 @@ const Button: FC<Props> = ({
   }
 
   return (
-    <button className={`${defaultStyles} ${variantStyles} ${className}`}>
+    <button
+      type={type !== "link" ? type : "button"}
+      className={`${defaultStyles} ${variantStyles} ${className}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

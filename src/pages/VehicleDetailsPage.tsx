@@ -10,7 +10,7 @@ import {
 import Container from "../components/shared/Container";
 import PageLoader from "../components/PageLoader/PageLoader";
 import Loader from "../components/Loader";
-import Button from "../components/ui/Button";
+import RentalcarForm from "../components/RentalcarForm";
 
 const VehicleDetailsPage = () => {
   const { vehicleId } = useParams();
@@ -103,30 +103,7 @@ const VehicleDetailsPage = () => {
                 <Outlet />
               </Suspense>
             </div>
-            <div className="w-[45%] py-11 px-14 border border-grayLight rounded-xl">
-              <p className="font-semibold text-xl mb-2">
-                Book your campervan now
-              </p>
-              <p className="font-normal text-base text-gray mb-6">
-                Stay connected! We are always ready to help you.
-              </p>
-              <form action="" className="grid gap-3.5">
-                <input type="text" className="input" placeholder="Name*" />
-                <input type="email" className="input" placeholder="Email*" />
-                <input
-                  type="date"
-                  className="input"
-                  placeholder="Booking date*"
-                />
-                <textarea className="input resize-none" placeholder="Comment" />
-                <Button
-                  variant="filled"
-                  className="max-w-[166px] w-full py-4 mx-auto"
-                >
-                  Send
-                </Button>
-              </form>
-            </div>
+            <RentalcarForm />
           </div>
         </div>
       </Container>

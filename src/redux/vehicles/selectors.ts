@@ -11,3 +11,6 @@ export const selectDetailsLoading = (state: RootState) =>
   state.vehicles.detailsLoading;
 
 export const selectLoading = (state: RootState) => state.vehicles.loading;
+
+export const selectDisplayedVehicles = (state: RootState) =>
+  state.vehicles.displayedVehicles;

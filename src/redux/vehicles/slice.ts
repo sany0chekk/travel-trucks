@@ -8,6 +8,7 @@ import { Vehicle } from "../../models/vehicle";
 
 interface VehiclesState {
   vehicles: Vehicle[];
+  displayedVehicles: number;
   selectedVehicle: Vehicle | null;
   locations: string[];
   loading: boolean;
@@ -17,6 +18,7 @@ interface VehiclesState {
 
 const initialState: VehiclesState = {
   vehicles: [],
+  displayedVehicles: 5,
   locations: [],
   selectedVehicle: null,
   loading: false,
@@ -27,7 +29,11 @@ const initialState: VehiclesState = {
 const slice = createSlice({
   name: "vehicles",
   initialState,
-  reducers: {},
+  reducers: {
+    loadMoreVehicles: (state) => {
+      state.displayedVehicles += 5;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(getAllVehicles.pending, (state) => {
@@ -37,6 +43,7 @@ const slice = createSlice({
       .addCase(
         getAllVehicles.fulfilled,
         (state, action: PayloadAction<Vehicle[]>) => {
+          state.displayedVehicles = 5;
           state.vehicles = action.payload;
           state.loading = false;
           state.error = null;
@@ -82,4 +89,5 @@ const slice = createSlice({
       }),
 });
 
+export const { loadMoreVehicles } = slice.actions;
 export default slice.reducer;
