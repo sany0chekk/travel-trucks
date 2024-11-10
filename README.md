@@ -15,7 +15,8 @@ This website offers an intuitive interface for searching, viewing, and booking c
 ## Installation and Usage Instructions
 
 ### 1. Clone the Repository
-- First, clone the repository to your local machine
+#### First, clone the repository to your local machine:
+```git clone https://github.com/sany0chekk/travel-trucks.git```
 
 ### 2. Install Dependencies
 ``` npm install ```
