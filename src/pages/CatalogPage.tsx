@@ -3,6 +3,7 @@ import FilterSidebar from "../components/FilterSidebar";
 import Container from "../components/shared/Container";
 import VehiclesList from "../components/VehiclesList";
 import Button from "../components/ui/Button";
+import React from "react";
 
 const CatalogPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

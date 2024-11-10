@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import { FC, useEffect } from "react";
 import { filtersTypes, filtersEquipment } from "../constants/filtersOptions";
 import FiltersLocationSelect from "./FiltersLocationSelect";
+import React from "react";
 
 interface Props {
   onClose: () => void;

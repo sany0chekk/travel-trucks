@@ -5,6 +5,7 @@ import { AppDispatch } from "../redux/store";
 import { getVehicleById } from "../redux/vehicles/operations";
 import { selectVehicleById } from "../redux/vehicles/selectors";
 import VehicleItemFeatures from "./VehicleItemFeatures";
+import React from "react";
 
 const VehicleFeatures = () => {
   const { vehicleId } = useParams();

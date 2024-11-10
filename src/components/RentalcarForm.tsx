@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import Button from "./ui/Button";
+import React from "react";
 
 interface IFormInputs {
   name: string;

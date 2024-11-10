@@ -9,6 +9,7 @@ import {
 import { AppDispatch } from "../redux/store";
 import PageLoader from "./PageLoader/PageLoader";
 import { Toaster } from "react-hot-toast";
+import React from "react";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage"));

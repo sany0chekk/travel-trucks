@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { selectVehicleById } from "../redux/vehicles/selectors";
 import { getVehicleById } from "../redux/vehicles/operations";
 import { AppDispatch } from "../redux/store";
+import React from "react";
 
 const VehicleReviews = () => {
   const { vehicleId } = useParams();

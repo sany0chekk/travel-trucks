@@ -4,6 +4,7 @@ import { Vehicle } from "../models/vehicle";
 import VehicleItemFeatures from "./VehicleItemFeatures";
 import VehicleItemFavorite from "./VehicleItemFavorite";
 import RatingAndLocation from "./RatingAndLocation";
+import React from "react";
 
 interface Props {
   vehicle: Vehicle;

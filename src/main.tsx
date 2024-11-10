@@ -8,6 +8,7 @@ import "./index.css";
 
 import App from "./components/App";
 import { store } from "./redux/store";
+import React from "react";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

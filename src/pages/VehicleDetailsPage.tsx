@@ -13,6 +13,7 @@ import Loader from "../components/Loader";
 import RentalcarForm from "../components/RentalcarForm";
 import VehicleGallery from "../components/VehicleGallery";
 import RatingAndLocation from "../components/RatingAndLocation";
+import React from "react";
 
 const VehicleDetailsPage = () => {
   const { vehicleId } = useParams();

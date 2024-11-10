@@ -1,5 +1,6 @@
 import { FC } from "react";
 import FiltersListItem from "./FiltersListItem";
+import React from "react";
 
 interface FilterItem {
   key: string;

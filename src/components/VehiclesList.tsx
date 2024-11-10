@@ -9,6 +9,7 @@ import Loader from "./Loader";
 import { loadMoreVehicles } from "../redux/vehicles/slice";
 import Button from "./ui/Button";
 import { useRef, useEffect, useState } from "react";
+import React from "react";
 
 const VehiclesList = () => {
   const vehicles = useSelector(selectAllVehicles);
