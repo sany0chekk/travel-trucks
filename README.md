@@ -44,5 +44,5 @@ This website offers an intuitive interface for searching, viewing, and booking c
 - This project was developed by Oleksandr Veselyi.
 
 #### Contact:
-- Email: your-email@example.com
-- GitHub: https://github.com/username
+- Email: veselyy.oleksandr@gmail.com
+- GitHub: https://github.com/sany0chekk
