@@ -55,7 +55,7 @@ const RentalcarForm = () => {
   };
 
   return (
-    <div className="w-[45%] py-11 px-14 border border-grayLight rounded-xl">
+    <div className="lg:w-[45%] py-6 lg:py-11 px-6 lg:px-14 border border-grayLight rounded-xl">
       <p className="font-semibold text-xl mb-2">Book your campervan now</p>
       <p className="font-normal text-base text-gray mb-6">
         Stay connected! We are always ready to help you.

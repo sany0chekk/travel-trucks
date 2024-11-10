@@ -6,6 +6,7 @@ interface Props {
   variant: "bordered" | "filled";
   className?: string;
   type?: "button" | "submit" | "reset" | "link";
+  target?: "_blank" | "_self";
   href?: string;
   onClick?: () => void;
 }
@@ -16,6 +17,7 @@ const Button: FC<Props> = ({
   className = "",
   type = "button",
   href = "",
+  target = "_self",
   onClick,
 }) => {
   const defaultStyles =
@@ -30,6 +32,7 @@ const Button: FC<Props> = ({
       <Link
         to={href}
         className={`${defaultStyles} ${variantStyles} ${className}`}
+        target={target}
       >
         {children}
       </Link>

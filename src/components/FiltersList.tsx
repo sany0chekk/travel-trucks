@@ -17,7 +17,7 @@ const FiltersList: FC<Props> = ({ items, onFilterChange }) => {
   return (
     <>
       {items.length > 0 && (
-        <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-y-2 gap-x-3">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-3">
           {items.map((item, index) => (
             <FiltersListItem
               key={index}

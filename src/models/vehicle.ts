@@ -1,5 +1,3 @@
-// models/vehicle.ts
-
 export interface VehicleGalleryItem {
   thumb: string;
   original: string;

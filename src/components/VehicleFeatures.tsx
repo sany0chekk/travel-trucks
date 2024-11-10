@@ -38,7 +38,7 @@ const VehicleFeatures = () => {
   } = vehicleById;
 
   return (
-    <div className="bg-inputs rounded-xl py-11 px-14">
+    <div className="bg-inputs rounded-xl py-6 lg:py-11 px-6 lg:px-14">
       <div className="mb-24">
         <VehicleItemFeatures
           engine={engine}

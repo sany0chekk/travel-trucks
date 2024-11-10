@@ -11,6 +11,8 @@ import Container from "../components/shared/Container";
 import PageLoader from "../components/PageLoader/PageLoader";
 import Loader from "../components/Loader";
 import RentalcarForm from "../components/RentalcarForm";
+import VehicleGallery from "../components/VehicleGallery";
+import RatingAndLocation from "../components/RatingAndLocation";
 
 const VehicleDetailsPage = () => {
   const { vehicleId } = useParams();
@@ -38,36 +40,13 @@ const VehicleDetailsPage = () => {
       <Container>
         <div className="pb-16">
           <h2 className="mb-2 font-semibold text-2xl">{name}</h2>
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex items-center gap-1">
-              <svg className="w-4 h-4 fill-rating">
-                <use href="/icons.svg#star"></use>
-              </svg>
-              <p className="font-normal text-base underline">{`${rating}(${reviews.length} Reviews)`}</p>
-            </div>
-            <div className="flex items-center gap-1">
-              <svg className="w-4 h-4">
-                <use href="/icons.svg#map"></use>
-              </svg>
-              <p className="font-normal text-base">{location}</p>
-            </div>
-          </div>
-          <p className="mb-7 font-semibold text-2xl">€{price}</p>
-          <ul
-            className="mb-7 grid gap-12"
-            style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            }}
-          >
-            {gallery.length > 0 &&
-              gallery.map(({ original }, index) => {
-                return (
-                  <li key={index} className="rounded-xl overflow-hidden">
-                    <img src={original} alt="" />
-                  </li>
-                );
-              })}
-          </ul>
+          <RatingAndLocation
+            rating={rating}
+            reviews={reviews.length}
+            location={location}
+          />
+          <p className="mb-7 font-semibold text-2xl">€{price.toFixed(2)}</p>
+          <VehicleGallery gallery={gallery} />
           <p className="font-normal text-base text-text">{description}</p>
         </div>
         <div className="flex flex-col">
@@ -97,8 +76,8 @@ const VehicleDetailsPage = () => {
           </nav>
           <span className="w-full h-[1px] bg-grayLight mb-11" />
 
-          <div className="flex gap-10">
-            <div className="w-[55%]">
+          <div className="flex max-lg:flex-col gap-10">
+            <div className="lg:w-[55%]">
               <Suspense fallback={<Loader />}>
                 <Outlet />
               </Suspense>
