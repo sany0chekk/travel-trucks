@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# Travel Truck
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This website offers an intuitive interface for searching, viewing, and booking campervans. Users can effortlessly enter their personal information, select a preferred booking date, and leave additional comments or requests. The project utilizes the Formik library for efficient form state management and validation handling, while Yup is employed to define robust validation schemas ensuring data accuracy and integrity.
 
-Currently, two official plugins are available:
+## Key Features:
+- **Search Campervans with Filters**: Allows users to filter campervans based on various criteria for quick and precise search results.
+- **Add to Favorites**: Users can add campervans to their favorites list for future consideration or booking.
+- **Read Detailed Information**: Provides comprehensive details about each campervan, including specifications, reviews, and available equipment.
+- **Book Campervans**: Simple process for booking campervans with the option to select a date and leave comments.
+- **User-Friendly Interface**: Simple and intuitive form for easy data entry.
+- **Robust Validation**: Ensures all required fields are filled with valid data.
+- **Seamless Date Selection**: Provides a smooth date picker for user convenience.
+- **Comment Field**: Allows
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation and Usage Instructions
 
-## Expanding the ESLint configuration
+### 1. Clone the Repository
+- First, clone the repository to your local machine
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 2. Install Dependencies
+``` npm install ```
 
-- Configure the top-level `parserOptions` property like this:
+### 3. Run the project
+```npm start```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Dependencies
+```json
+    "@reduxjs/toolkit",
+    "axios",
+    "formik",
+    "modern-normalize",
+    "query-string",
+    "react",
+    "react-dom",
+    "react-hot-toast",
+    "react-redux",
+    "react-router-dom",
+    "yet-another-react-lightbox",
+    "yup"
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Author
+- This project was developed by Oleksandr Veselyi.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### Contact:
+- Email: your-email@example.com
+- GitHub: https://github.com/username
