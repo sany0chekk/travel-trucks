@@ -2,7 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosConfig";
 import { Vehicle } from "../../models/vehicle";
 import { AxiosError } from "axios";
-import { RootState } from "../store";
+
+interface FiltersState {
+  filters: { [key: string]: string | boolean };
+}
 
 export const getAllVehicles = createAsyncThunk<
   Vehicle[],
@@ -10,8 +13,8 @@ export const getAllVehicles = createAsyncThunk<
   { rejectValue: string }
 >("vehicles/getAllVehicles", async (_, thunkAPI) => {
   try {
-    const state = thunkAPI.getState() as RootState;
-    const filters = state.filters.filters;
+    const state = thunkAPI.getState();
+    const filters = (state as { filters: FiltersState }).filters.filters;
     const response = await axiosInstance.get("/campers", {
       params: filters,
     });
