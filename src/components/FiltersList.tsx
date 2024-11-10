@@ -16,7 +16,7 @@ interface Props {
 
 const FiltersList: FC<Props> = ({ items, onFilterChange }) => {
   return (
-    <>
+    <form>
       {items.length > 0 && (
         <ul className="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-3">
           {items.map((item, index) => (
@@ -28,7 +28,7 @@ const FiltersList: FC<Props> = ({ items, onFilterChange }) => {
           ))}
         </ul>
       )}
-    </>
+    </form>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
-import { FC, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { FC } from "react";
+import { useSelector } from "react-redux";
+import { selectFilters } from "../redux/filters/selectors";
 
 interface Props {
   item: {
@@ -9,39 +10,32 @@ interface Props {
     icon: string;
     label: string;
   };
+  type?: "checkbox" | "radio";
   onFilterChange: (filterKey: string, filterValue: string | boolean) => void;
 }
 
-const FiltersListItem: FC<Props> = ({ item, onFilterChange }) => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const [isChecked, setIsChecked] = useState(
-    searchParams.get(item.key) === item.value
-  );
+const FiltersListItem: FC<Props> = ({
+  item,
+  type = "checkbox",
+  onFilterChange,
+}) => {
+  const filters = useSelector(selectFilters);
+  const isChecked = filters[item.key] === item.value;
 
   const handleCheckboxChange = () => {
     const newCheckedState = !isChecked;
-    setIsChecked(newCheckedState);
-
-    if (newCheckedState) {
-      onFilterChange(item.key, item.value);
-    } else {
-      onFilterChange(item.key, "");
-    }
+    onFilterChange(item.key, newCheckedState ? item.value : "");
   };
-
-  useEffect(() => {
-    setIsChecked(searchParams.get(item.key) === item.value);
-  }, [location.search, item.key, item.value]);
 
   return (
     <li>
       <label
         className={`h-[96px] px-10 border rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors 
-      ${isChecked ? "border-button" : "border-grayLight"}`}
+        ${isChecked ? "border-button" : "border-grayLight"}`}
       >
         <input
-          type="checkbox"
+          type={type}
+          name={item.key}
           checked={isChecked}
           onChange={handleCheckboxChange}
           className="hidden"

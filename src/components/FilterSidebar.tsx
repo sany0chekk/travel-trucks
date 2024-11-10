@@ -5,10 +5,11 @@ import { AppDispatch } from "../redux/store";
 import { setFilter } from "../redux/filters/slice";
 import { getAllVehicles } from "../redux/vehicles/operations";
 import { useSearchParams } from "react-router-dom";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { filtersTypes, filtersEquipment } from "../constants/filtersOptions";
 import FiltersLocationSelect from "./FiltersLocationSelect";
 import React from "react";
+import Button from "./ui/Button";
 
 interface Props {
   onClose: () => void;
@@ -19,19 +20,24 @@ const FilterSidebar: FC<Props> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const [pendingFilters, setPendingFilters] = useState(
+    new URLSearchParams(searchParams)
+  );
+
   const handleFilterChange = (
     filterKey: string,
     filterValue?: string | boolean
   ) => {
-    if (filterValue === "" || filterValue === undefined) {
-      searchParams.delete(filterKey);
-    } else {
-      searchParams.set(filterKey, String(filterValue));
-    }
-    setSearchParams(searchParams);
+    const updatedFilters = new URLSearchParams(pendingFilters);
 
-    dispatch(setFilter({ filterKey, filterValue }));
-    dispatch(getAllVehicles());
+    if (filterValue === "" || filterValue === undefined) {
+      updatedFilters.delete(filterKey);
+    } else {
+      updatedFilters.set(filterKey, String(filterValue));
+    }
+
+    setPendingFilters(updatedFilters);
+    dispatch(setFilter({ filterKey, filterValue: filterValue ?? "" }));
   };
 
   const handleLocationChange = (
@@ -41,11 +47,15 @@ const FilterSidebar: FC<Props> = ({ onClose }) => {
     handleFilterChange("location", location);
   };
 
+  const handleSubmit = () => {
+    setSearchParams(pendingFilters);
+    dispatch(getAllVehicles());
+  };
+
   useEffect(() => {
     searchParams.forEach((value, key) => {
       dispatch(setFilter({ filterKey: key, filterValue: value }));
     });
-
     dispatch(getAllVehicles());
   }, [dispatch, searchParams]);
 
@@ -68,12 +78,11 @@ const FilterSidebar: FC<Props> = ({ onClose }) => {
           />
         </div>
       </div>
-      <div>
+      <div className="mb-10">
         <p className="font-medium text-text mb-8">Filters</p>
         <div className="flex flex-col gap-6 mb-8">
           <h2 className="font-semibold text-xl">Vehicle equipment</h2>
           <span className="w-full h-[1px] bg-grayLight" />
-
           <FiltersList
             items={filtersEquipment}
             onFilterChange={handleFilterChange}
@@ -88,6 +97,13 @@ const FilterSidebar: FC<Props> = ({ onClose }) => {
           />
         </div>
       </div>
+      <Button
+        onClick={handleSubmit}
+        variant="filled"
+        className="mr-auto py-4 px-14"
+      >
+        Submit
+      </Button>
     </div>
   );
 };
